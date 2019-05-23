@@ -24,6 +24,7 @@ public class CountExample2 {
     // 同时并发执行的线程数
     public static int threadTotal = 200;
 
+    // 原子性包进行原子性操作 保证线程安全
     public static AtomicInteger count = new AtomicInteger(0);
 
     public static void main(String[] args) {

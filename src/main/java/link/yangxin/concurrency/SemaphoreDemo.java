@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class SemaphoreDemo {
 
-    private static final Semaphore semaphore = new Semaphore(1,true);
+    private static final Semaphore semaphore = new Semaphore(3,true);
 
     private static final ThreadPoolExecutor threadPool = new ThreadPoolExecutor(5, 10, 60, TimeUnit.SECONDS, new LinkedBlockingQueue<Runnable>());
 
