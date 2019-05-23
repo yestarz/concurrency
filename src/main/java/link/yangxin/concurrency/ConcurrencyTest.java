@@ -35,9 +35,10 @@ public class ConcurrencyTest {
             executorService.execute(()->{
                 try {
                     semaphore.acquire();
-                    //add();
+                    Thread.sleep(100L);
+                    add();
 
-                    map.put(t, t);
+                    //map.put(t, t);
                     semaphore.release();
                 }catch (Exception e){
                     log.error(e.getMessage(), e);
