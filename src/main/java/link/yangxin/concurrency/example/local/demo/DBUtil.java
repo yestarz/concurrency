@@ -18,7 +18,7 @@ public class DBUtil {
     public static Connection getConnection(){
         try {
             Connection conn = threadLocal.get();
-            if (conn != null) {
+            if (conn != null && !conn.isClosed()) {
                 return conn;
             }
             Class.forName("com.mysql.jdbc.Driver");
