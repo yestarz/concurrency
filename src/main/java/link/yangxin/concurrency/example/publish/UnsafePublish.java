@@ -19,12 +19,19 @@ public class UnsafePublish {
         return states;
     }
 
+    public void test(){
+        for (String state : states) {
+            System.out.println(state);
+        }
+    }
+
     public static void main(String[] args) {
         UnsafePublish unsafePublish = new UnsafePublish();// 发布一个对象
         log.info("{}", Arrays.toString(unsafePublish.getStates())); // a,b,c
 
         unsafePublish.getStates()[0] = "d"; // 尝试对这个发布的对象的属性进行修改，发现可以修改成功，那么我们在多线程环境下，也无法避免这个属性是否会被其他线程所修改，所以这是线程不安全的
         log.info("{}", Arrays.toString(unsafePublish.getStates())); // d,b,c
+        unsafePublish.test();
     }
 
 }

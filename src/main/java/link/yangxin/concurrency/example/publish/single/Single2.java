@@ -10,6 +10,7 @@ import java.util.concurrent.ExecutorService;
 /**
  * 饿汉模式
  * 单例的实例在类加载的时候被创建,这是线程安全的
+ * 但是这种会造成资源的浪费，因为不管是否使用，都会调用一次构造方法
  * @author yangxin
  * @date 2019/5/26
  */

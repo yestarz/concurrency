@@ -11,30 +11,20 @@ import link.yangxin.concurrency.annotation.ThreadSafe;
 @ThreadSafe
 @Recommend
 public class SingleEnum {
-
-    private SingleEnum(){
-
-    }
-
+    private SingleEnum(){ }
     public static SingleEnum getInstance(){
         return Singleton.INSTANCE.getInstance();
     }
-
     private enum Singleton {
         INSTANCE;
-
         private SingleEnum singleEnum ;
-
         // JVM来保证这个方法绝对只调用一次
         Singleton(){
             singleEnum = new SingleEnum();
         }
-
         public SingleEnum getInstance(){
             return singleEnum;
         }
-
-
     }
 
 }
