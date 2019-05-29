@@ -66,3 +66,17 @@
 - SimpleDateFomat -> JodaTime
 - ArrayList HashSet HashMap
 - 先检查再执行:if(condititon(a))(handler(a))
+
+## 线程安全-同步容器
+
+- ArrayList -> Vector Stack
+- HashMap -> HashTable(key value 不能为null)
+- Collections.synchronizedXXX(List,Set,Map)
+
+## 线程安全 - 并发容器 J.U.C
+
+- ArrayList -> CopyOnWriteArrayList 读多写少 读写分离 最终一致性 使用时另外开辟空间 读的时候没加锁，写的时候加了锁
+- HashSet TreeSet -> CopyOnWriteArraySet(HashSet) 读多写少 ConcurrentSkipListSet(TreeSet，不允许null).批量操作还是要加锁，比如removeAll，addAll,containsAll等方法
+- HashMap TreeMap -> ConcurrentHashMap,不允许null. ConcurrentSkipListMap,key是有序的,支持更高的并发
+
+
