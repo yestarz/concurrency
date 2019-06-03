@@ -79,4 +79,35 @@
 - HashSet TreeSet -> CopyOnWriteArraySet(HashSet) 读多写少 ConcurrentSkipListSet(TreeSet，不允许null).批量操作还是要加锁，比如removeAll，addAll,containsAll等方法
 - HashMap TreeMap -> ConcurrentHashMap,不允许null. ConcurrentSkipListMap,key是有序的,支持更高的并发
 
+## AbstractQueuedSynchronizer - AQS
+
+- 使用Node 实现FIFO队列，可以用于构建锁或者其他同步装置的基础框架
+- 利用了一个int类型表示状态 state 字段 ReerentLock中的state表示获取锁的线程数量
+- 使用方法是继承 子类通过继承并通过实现它的方法管理其状态（acquire 和 release）的方法操作状态
+- 可以同时实现排它锁和共享锁模式（独占、共享）
+
+## CyclicBarrier CountDownLunch
+> CountDownLunch只能使用一次，CyclicBarrier可以使用reset方法重置，再次使用
+> CountDownLunch主要是实现一个或多个线程需要等待其他线程 完成某项操作之后才能再执行其他操作，描述的是线程等待其他线程的关系。
+CyclicBarrier实现了多个线程之间相互等待，直到所有线程都满足了条件之后才能继续执行后面的操作，描述的是各个线程内部相互等待的关系
+
+
+## ReentrantLock (可重入锁) 与 锁
+
+1. ReentrantLock 和 synchronized 的区别
+- 可重入性 都是可重入锁
+- 锁的实现 synchronized是基于jvm实现的 ReentrantLock基于JDK实现的
+- 性能的区别 官方更推荐synchronized
+- 功能区别1.synchronized更加方便和间接 2.ReentrantLock需要手动操作 3. ReentrantLock更具有灵活性
+
+2. ReentrantLock独有的功能
+- 可指定是公平锁还是非公平锁 synchronized只能是非公平锁. 公平锁指先等待的线程先获取锁。
+- 提供了一个Condition类，可以分组唤醒需要唤醒的线程。synchronized要么唤醒随机一个线程，要么唤醒全部的线程
+- 提供能够中断等待锁的线程的机制，lock.lockInterruptibly();
+
+## 锁总结 
+1. 当只有少量竞争者的时候，synchronized是比较好的选择，
+2. 竞争者不少，但是线程增长的趋势是可预估的，ReentrantLock较好
+3.synchronized不会造成死锁，其他的锁使用不当会造成死锁，因为某些情况没有执行Unlock操作
+
 
